@@ -11,7 +11,7 @@ function onSearchForm(evt) {
   evt.preventDefault();
 
   apiService.query = evt.currentTarget.elements.searchQuery.value.trim();
-  return console.log(query);
+  return console.log(apiService.query);
 }
 
 function onLoadMoreClick() {}
