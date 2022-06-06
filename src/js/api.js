@@ -7,25 +7,37 @@ const perPage = 40;
 
 export default class ApiService {
   constructor() {
-    this.page = 1;
+    // поисковый запрос
     this.searchQuery = '';
+    // номер страницы
+    this.page = 1;
   }
 
+  // получает и возвращает данные из библиотеки
   async fetchImage() {
     try {
       const url = `${URL}?key=${API_KEY}&q=${this.searchQuery}&${options}&page=${this.page}&per_page=${perPage}`;
       const response = await axios(url);
-      const image = await response(data);
+
+      const image = await response.data;
+      this.incrementPage();
       return image;
     } catch (error) {
       console.log(error);
     }
   }
 
+  // добавляет следующую страницу
   incrementPage() {
     this.page += 1;
   }
 
+  // сброс при новом запросе сброс
+  resetPage() {
+    this.page = 1;
+  }
+
+  // получает и перезаписывает данные
   get query() {
     return this.searchQuery;
   }
