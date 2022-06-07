@@ -18,9 +18,7 @@ export default class ApiService {
     try {
       const url = `${URL}?key=${API_KEY}&q=${this.searchQuery}&${options}&page=${this.page}&per_page=${perPage}`;
       const response = await axios(url);
-
       const image = await response.data;
-      this.incrementPage();
       return image;
     } catch (error) {
       console.log(error);
